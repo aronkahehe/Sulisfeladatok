@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Kalkulátor</title>
+
+    <style>
+
+
+    .range {
+        width: 100%;
+
+    }
+
+        body{
+            background-color: burlywood;
+            margin: 2rem;
+        }
+
+       .container{
+        text-align: center;
+        background-color: wheat;
+        width: 400px;
+        margin: auto;
+        border-radius: 2px;
+
+       } 
+
+       h2{
+        background-color: brown;
+        border: 2px solid black;
+       }
+
+       .keretecske{
+    
+        background-color: beige;
+        width: 150px;
+        margin: auto;
+        text-align: center;
+        border: solid 1px black;
+        margin-bottom: 10px;
+        box-shadow: 5px 5px gray;
+       }
+
+       #kg{
+        width: 250px;
+        margin-bottom: 1px;
+        border-radius: 5px;
+        
+       }
+
+       #cm{
+        width: 250px;
+        margin-bottom: 1px;
+        border-radius: 5px;
+       }
+
+       #gomb{
+        margin-bottom: 10px;
+        border: 2px solid black;
+        box-shadow: 2px 3px grey;
+        width: 200px;
+        background-color: lightcoral;
+        margin-top: 10px;    
+        
+        
+    }
+
+     
+
+        output {
+            display: inline;
+        }
+
+        label{
+            display: flex;
+            justify-content: start;
+            margin-left: 58px;
+
+        }
+
+        #cigany{
+            background-color: lightcoral;
+            color: antiquewhite;
+        }
+
+
+
+.slider {
+  width: 30%;
+  margin: 10px auto;
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: 3px;
+  background-color: bisque;
+  border: 1px solid brown;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background-color: coral;
+  border: 2px orange solid;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.slidecontainer {
+  transform: translateY(-10px);
+}
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h2>BMI Kalkulátor</h2>
+    <div class="keretecske">
+        <div id="bmiszam">20.0</div>
+        <p id="cim">Normál testsúly</p>
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Súly - kg</label>
+        <div class="d-flex">
+            <input type="range" class="slider" onchancge="showValue(this)" value="100" name="suly" id="kg" min="1" max="200" placeholder="testsúly" oninput="this.nextElementSibling.value = this.value">
+            <input type="text" id="cigany" style="width: 22px;">
+            <output class="text-primary pl-2" name="height"></output>
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+        <label for="weight">Magasság - cm</label>
+        <div class="d-flex">
+            <input type="range" class="slider" onchancge="showValue(this)" value="100" name="magassag" id="cm" min="1" max="200" placeholder="testmagasság" oninput="this.nextElementSibling.value = this.value">
+            <input type="text" id="cigany" style="width: 22px;">
+            <output class="text-primary pl-2" name="height"></output>
+        </div>
+    </div>
+    <input type="button" value="Számol" id="gomb" onclick="szamol()">    
+
+    <script>
+
+        
+
+        function szamol(){
+
+            let suly=document.querySelector('#kg').value
+            let magassag=document.querySelector('#cm').value
+            let bmi= (suly/(magassag*magassag))*10000
+            
+
+            console.log(suly)
+            console.log(magassag)
+            console.log(bmi)
+
+            if(bmi <=18.5){
+                document.querySelector('#bmiszam').innerHTML=bmi.toFixed(1)
+                document.querySelector('#bmiszam').style.color="blue"
+                document.querySelector('#cim').innerHTML="Egyél többet 👨🏿‍❤️‍💋‍👨🏿"
+            }
+
+            else if(bmi >18.5 && bmi <= 24.9){
+                document.querySelector('#bmiszam').innerHTML=bmi.toFixed(1)
+                document.querySelector('#bmiszam').style.color='green'
+                document.querySelector('#cim').innerHTML="Normál súly"
+            }
+
+            else if(bmi >25 && bmi <= 29.9){
+                document.querySelector('#bmiszam').innerHTML=bmi.toFixed(1)
+                document.querySelector('#bmiszam').style.color='lightcoral'
+                document.querySelector('#cim').innerHTML="Kezded elvetni a súlykot"
+            }
+
+            else if(bmi >30 && bmi <= 34.9){
+                document.querySelector('#bmiszam').innerHTML=bmi.toFixed(1)
+                document.querySelector('#bmiszam').style.color='lightred'
+                document.querySelector('#cim').innerHTML="El fogod veszíteni a csatát"
+            }
+
+            else if(bmi >=35){
+                document.querySelector('#bmiszam').innerHTML=bmi.toFixed(1)
+                document.querySelector('#bmiszam').style.color='red'
+                document.querySelector('#cim').innerHTML="Elvesztetted a csatát"
+            }
+        }
+
+    </script>
+
+</div>
+
+
+    
+</body>
+</html>
